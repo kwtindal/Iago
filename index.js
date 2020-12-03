@@ -111,13 +111,6 @@ client.on('message', async message => {
     //         // handle failure of any Promise rejection inside here
     //     }
     // }
-
-    const http = require('http');
-    const server = http.createServer((req, res) => {
-        res.writeHead(200);
-        res.end('ok');
-    });
-    server.listen(3000);
 });
 
 const http = require('http');
