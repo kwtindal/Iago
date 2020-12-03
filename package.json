@@ -1,0 +1,17 @@
+{
+  "name": "iago",
+  "version": "0.0.1",
+  "description": "RPG Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kenny Tindal",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.4.1",
+    "dotenv": "^8.2.0",
+    "jquery": "^3.5.1",
+    "line-reader": "^0.4.0"
+  }
+}
