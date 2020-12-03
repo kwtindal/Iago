@@ -1,10 +1,11 @@
 {
   "name": "iago",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "RPG Bot",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "Kenny Tindal",
   "license": "ISC",
@@ -13,5 +14,9 @@
     "dotenv": "^8.2.0",
     "jquery": "^3.5.1",
     "line-reader": "^0.4.0"
+  },
+  "engines":{
+    "node": "15.1",
+    "npm": "*"
   }
 }
