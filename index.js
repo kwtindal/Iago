@@ -62,36 +62,36 @@ client.on('message', async message => {
 
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-	const args = message.content.slice(prefix.length).trim().split(/ +/);
-	const commandName = args.shift().toLowerCase();
+    const args = message.content.slice(prefix.length).trim().split(/ +/);
+    const commandName = args.shift().toLowerCase();
 
-	const command = client.commands.get(commandName)
-		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+    const command = client.commands.get(commandName)
+        || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
-	if (!command) return;
+    if (!command) return;
 
-	if (command.guildOnly && message.channel.type === 'dm') {
-		return message.reply('I can\'t execute that command inside DMs!');
-	}
+    if (command.guildOnly && message.channel.type === 'dm') {
+        return message.reply('I can\'t execute that command inside DMs!');
+    }
 
-	if (command.args && !args.length) {
-		let reply = `You didn't provide any arguments, ${message.author}!`;
+    if (command.args && !args.length) {
+        let reply = `You didn't provide any arguments, ${message.author}!`;
 
-		if (command.usage) {
-			reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
-		}
+        if (command.usage) {
+            reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
+        }
 
-		return message.channel.send(reply);
-	}
+        return message.channel.send(reply);
+    }
 
     try {
-		command.execute(message, args, characterDictionaries);
-	} catch (error) {
-		console.error(error);
-		message.reply('there was an error trying to execute that command!');
-	}
+        command.execute(message, args, characterDictionaries);
+    } catch (error) {
+        console.error(error);
+        message.reply('there was an error trying to execute that command!');
+    }
 
-	// else if (message.content === 'players') {
+    // else if (message.content === 'players') {
     //     console.log("!!!!!!!!");
     //     try {
     //         for (let k in characterDictionaries) {
@@ -111,6 +111,13 @@ client.on('message', async message => {
     //         // handle failure of any Promise rejection inside here
     //     }
     // }
+
+    const http = require('http');
+    const server = http.createServer((req, res) => {
+        res.writeHead(200);
+        res.end('ok');
+    });
+    server.listen(3000);
 });
 
 
