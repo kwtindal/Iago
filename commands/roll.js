@@ -3,6 +3,29 @@ module.exports = {
     name: 'roll',
     description: `${prefix}roll ([PlayerName]||[CharacterName] [CharacterStat]`,
     execute(message, args, characterDictionaries) {
+      console.log(args[0]);
+      if (isNumeric(args[0])){
+        //come back here and make this better
+        
+        console.log("its a number");
+        let num = parseInt(args[0], 10);
+
+        var diceRoll = [];
+        var total = 0;
+
+        let d12 = rolldie(12);
+        diceRoll.push('(' + d12 + ')');
+        total += d12;
+        for (let i = 0; i < num; i++) {
+                let d6 = rolldie(6);
+                total += d6;
+                diceRoll.push('(' + d6 + ')');
+            }
+
+        message.channel.send(diceRoll + ' = ' + total);
+        return;
+      }
+
         var playerName = args[0].toLowerCase();
         var characterStat = args[1].toLowerCase();
         var diceRoll = [];
@@ -23,7 +46,7 @@ module.exports = {
 
         let d12 = rolldie(12);
         diceRoll.push('(' + d12 + ')');
-        total += d12
+        total += d12;
         if (characterDictionaries[playerName][characterStat] != 0){
             //diceRoll.push('+');
             
@@ -54,4 +77,10 @@ function rolldie(die) {
     return Math.floor(
         Math.random() * (die) + 1
     )
+}
+
+function isNumeric(str) {
+  if (typeof str != "string") return false // we only process strings!  
+  return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+         !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
 }
